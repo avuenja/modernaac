@@ -1,0 +1,181 @@
+ALTER TABLE `accounts` ADD `page_access` int(11);
+ALTER TABLE `accounts` ADD `page_lastday` int(11);
+ALTER TABLE `accounts` ADD `email_new` varchar(255);
+ALTER TABLE `accounts` ADD `email_new_time` int(15);
+ALTER TABLE `accounts` ADD `rlname` varchar(255);
+ALTER TABLE `accounts` ADD `location` varchar(255);
+ALTER TABLE `accounts` ADD `created` int(16);
+ALTER TABLE `accounts` ADD `email_code` varchar(255);
+ALTER TABLE `accounts` ADD `next_email` int(11);
+ALTER TABLE `accounts` ADD `premium_points` int(11);
+ALTER TABLE `accounts` ADD `nickname` char(48);
+ALTER TABLE `accounts` ADD avatar char(48);
+ALTER TABLE `accounts` ADD about_me text;
+ALTER TABLE `accounts` CHANGE  `key`  `key` VARCHAR( 128 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT  '';
+ALTER TABLE `players` ADD `old_name` varchar(255);
+ALTER TABLE `players` ADD `hide_char` int(11);
+ALTER TABLE `players` ADD `worldtransfer` int(11);
+ALTER TABLE `players` ADD `created` int(16);
+ALTER TABLE `players` ADD `nick_verify` int(11);
+ALTER TABLE `players` ADD `comment` text;
+UPDATE `players` SET `hide_char` = 0;
+UPDATE `accounts` SET `key` = '';
+
+INSERT INTO `players` (`name`, `world_id`, `group_id`, `account_id`, `level`, `vocation`, `health`, `healthmax`, `experience`, `lookbody`, `lookfeet`, `lookhead`, `looklegs`, `looktype`, `lookaddons`, `maglevel`, `mana`, `manamax`, `manaspent`, `soul`, `town_id`, `posx`, `posy`, `posz`, `conditions`, `cap`, `sex`, `lastlogin`, `lastip`, `save`, `skull`, `skulltime`, `rank_id`, `guildnick`, `lastlogout`, `blessings`, `balance`, `stamina`, `direction`, `loss_experience`, `loss_mana`, `loss_skills`, `loss_containers`, `loss_items`, `premend`, `online`, `marriage`, `promotion`, `deleted`, `description`, `created`, `nick_verify`, `old_name`, `hide_char`, `worldtransfer`, `comment`) VALUES
+('Rook Sample', 0, 1, 1, 1, 0, 150, 150, 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 0, 0, 0, 50, 50, 7, '', 400, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 201660000, 0, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, '', 0, 0, '', 0, 0, 'This player has no comment at this moment.'),
+('Sorcerer Sample', 0, 1, 1, 8, 1, 185, 185, 4200, 0, 0, 0, 0, 110, 0, 0, 35, 35, 0, 0, 1, 50, 50, 7, '', 440, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 201660000, 0, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, '', 0, 0, '', 0, 0, 'This player has no comment at this moment.'),
+('Druid Sample', 0, 1, 1, 8, 2, 185, 185, 4200, 0, 0, 0, 0, 110, 0, 0, 35, 35, 0, 0, 1, 50, 50, 7, '', 440, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 201660000, 0, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, '', 0, 0, '', 0, 0, 'This player has no comment at this moment.'),
+('Paladin Sample', 0, 1, 1, 8, 3, 185, 185, 4200, 0, 0, 0, 0, 110, 0, 0, 35, 35, 0, 0, 1, 50, 50, 7, '', 440, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 201660000, 0, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, '', 0, 0, '', 0, 0, 'This player has no comment at this moment.'),
+('Knight Sample', 0, 1, 1, 8, 4, 185, 185, 4200, 0, 0, 0, 0, 110, 0, 0, 35, 35, 0, 0, 1, 50, 50, 7, '', 440, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 201660000, 0, 100, 100, 100, 100, 100, 0, 0, 0, 0, 0, '', 0, 0, '', 0, 0, 'This player has no comment at this moment.');
+
+CREATE TABLE IF NOT EXISTS `bugtracker` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` int(3) NOT NULL,
+  `time` int(11),
+  `author` int(11) NOT NULL,
+  `text` text,
+  `title` varchar(120),
+  `done` tinyint(3),
+  `priority` tinyint(3),
+  `closed` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`author`) REFERENCES `players` (`id`) ON DELETE CASCADE  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `friends` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `with` int(11),
+  `friend` int(11),
+  `time` int(11),
+  `active` tinyint(1),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`with`) REFERENCES `accounts` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`friend`) REFERENCES `accounts` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` int(11),
+  `to` int(11),
+  `title` varchar(120),
+  `text` tinytext,
+  `time` int(11),
+  `delete_from` tinyint(1),
+  `delete_to` tinyint(1),
+  `unread` tinyint(1),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`from`) REFERENCES `accounts` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`to`) REFERENCES `accounts` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(150) DEFAULT '',
+  `body` text,
+  `time` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_id` int(11),
+  `body` text,
+  `time` int(11) DEFAULT '0',
+  `author` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`author`) REFERENCES `players` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `forums` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(120),
+  `description` tinytext,
+  `access` smallint(5) DEFAULT '1' COMMENT 'Min. access to see the board',
+  `closed` tinyint(1),
+  `moderators` tinytext,
+  `order` int(6),
+  `requireLogin` tinyint(1),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `forums` ADD `guild` int(11);
+
+CREATE TABLE IF NOT EXISTS `threads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(120),
+  `sticked` tinyint(1),
+  `closed` tinyint(1),
+  `author` varchar(64),
+  `time` int(11),
+  `board_id` int(11),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`board_id`) REFERENCES `forums` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(120) ,
+  `text` text,
+  `time` int(11),
+  `author` varchar(64),
+  `board_id` int(11),
+  `thread_id` int(11),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`board_id`) REFERENCES `forums` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`thread_id`) REFERENCES `threads` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `videos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` int(11) ,
+  `title` varchar(120),
+  `description` tinytext,
+  `youtube` varchar(45),
+  `views` int(11),
+  `time` int(11),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`author`) REFERENCES `players` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `video_comments` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `author` int(11),
+  `video` int(11),
+  `time` int(11),
+  `text` tinytext,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`video`) REFERENCES `videos` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`author`) REFERENCES `players` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `poll` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question` varchar(150) ,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_start` datetime ,
+  `date_end` datetime ,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `question` (`question`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `poll_answer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poll_id` int(11) NOT NULL,
+  `answer` varchar(150) ,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `poll_votes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `answer_id` int(11) ,
+  `poll_id` int(11) ,
+  `account_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`answer_id`) REFERENCES `poll_answer` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`poll_id`) REFERENCES `poll` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`)  ON DELETE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

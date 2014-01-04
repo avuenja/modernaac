@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+
+body {
+	background:		#f0f4f7;	
+}
+
+
+
+#wrapper, #left_stroke, #right_stroke{
+	position:		relative;
+	width:			749px;		
+
+	margin:			0 auto;
+}
+#header {
+	width:749px;
+	height:98px;
+	background: url(images/header.png);
+}
+
+
+#content {
+	position:relative;
+	float:left;
+	width:749px;
+
+	background: url(images/content.png) repeat;
+}
+
+
+
+#left_stroke {
+	position:relative;
+	float:left;
+	width:16px;
+	height:639px;
+	background-image:url(images/left_stroke.png);
+	background-position:left;
+	background-repeat: y-repeat;
+}
+
+#right_stroke {
+	position:relative;
+	float:right;
+	width:16px;
+	height:639px;
+	background-image:url(images/right_stroke.png);
+	background-position:right;
+	background-repeat: y-repeat;
+}
+
+
+#footer{
+	position: relative;
+	background-image:url(images/footer.png);
+	width:749px;
+	height:29px;
+	clear:both;
+	margin:0 auto;
+}
+
+
+li {
+	color: red;
+}
+
+
+fieldset {
+	border: 1px solid light gray;
+}
+
+.field {
+	width: 400px; 
+	height: 200px; 
+	overflow: auto; 
+	font-size: 12px;
+}

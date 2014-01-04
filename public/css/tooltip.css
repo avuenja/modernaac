@@ -1,0 +1,64 @@
+#tt {
+ position:absolute;
+ display:block;
+ background:url(../images/eq/tt_left.gif) top left no-repeat;
+ }
+ #tttop {
+ display:block;
+ height:5px;
+ margin-left:5px;
+ background:url(../images/eq/tt_top.gif) top right no-repeat;
+ overflow:hidden;
+ }
+ #ttcont {
+ display:block;
+ padding:2px 12px 3px 7px;
+ margin-left:5px;
+ background:#222;
+ color:#fff;
+ }
+#ttbot {
+display:block;
+height:5px;
+margin-left:5px;
+background:url(../images/eq/tt_bottom.gif) top right no-repeat;
+overflow:hidden;
+}
+
+#bg {background-image:url('../images/items/bg.gif');border:1px solid #000;width:110px;height:144px;padding:1px;}
+#bg .col1 {float:left;margin-left:2px;}
+#bg .col2 {float:left;margin-left:2px;}
+#bg .col3 {float:left;margin-left:2px;}
+
+.a2,.a0-2 {margin-top:15px;}
+.a6,.a0-6 {margin-top:5px;}
+.a9,.a0-9 {margin-top:5px;margin-bottom:15px;}
+
+.a1,.a4,.a7,.a8,.a0-1,.a0-4,.a0-7,.a0-8 {margin-top:1.5px;}
+
+.a3,.a0-3 {margin-top:15px;}
+.a5,.a0-5 {margin-top:5px;}
+.a10,.a0-10 {margin-bottom:15px;margin-top:5px;}
+
+.a0,.a1,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9,.a10 {width:34px;height:34px;}
+.a0-1,.a0-2,.a0-3,.a0-4,.a0-5,.a0-6,.a0-7,.a0-8,.a0-9,.a0-10 {width:34px;height:34px;background-image:url('../images/items/0.gif');}
+/*img {position:relative;left:1px;top:1px;}*/
+.a2 {background-image:url('../images/items/2.gif');}
+.a6 {background-image:url('../images/items/6.gif');}
+.a9 {background-image:url('../images/items/9.gif');}
+
+.a1 {background-image:url('../images/items/1.gif');}
+.a4 {background-image:url('../images/items/4.gif');}
+.a7 {background-image:url('../images/items/7.gif');}
+.a8 {background-image:url('../images/items/8.gif');}
+
+.a3 {background-image:url('../images/items/3.gif');}
+.a5 {background-image:url('../images/items/5.gif');}
+.a10 {background-image:url('../images/items/10.gif');}
+
+.norm {color:#c2c2c2;font-weight:bold;font-size:12pt;text-decoration:underline;padding-bottom:6px;}
+.rare {color:#002cba;font-weight:bold;font-size:12pt;text-decoration:underline;padding-bottom:6px;}
+.epic {color:#6c008b;font-weight:bold;font-size:12pt;text-decoration:underline;padding-bottom:6px;}
+.lege {color:#ffc000;font-weight:bold;font-size:12pt;text-decoration:underline;padding-bottom:6px;}
+
+.attr {font-size:9pt;}
